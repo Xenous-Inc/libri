@@ -1,0 +1,12 @@
+{
+  "name": "libri",
+  "displayName": "libri",
+  "expo": {
+    "name": "libri",
+    "slug": "libri",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
