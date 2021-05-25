@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "997543277465",
+    "project_id": "libri-9cc6e",
+    "storage_bucket": "libri-9cc6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997543277465:android:51515c89c585a7b8c65908",
+        "android_client_info": {
+          "package_name": "ru.xenous.libri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997543277465-dqkd20iisoa4lbkfv4kp3fnsuqad3imn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.xenous.libri",
+            "certificate_hash": "afec9a445ab173b1eb603f3c14f981cd5f6e0398"
+          }
+        },
+        {
+          "client_id": "997543277465-jeneu7k3ccuakb4c7nukmd7bp6ddme5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU_jbBdomO7sE08Yemnm-az_RrAB0MCK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997543277465-jeneu7k3ccuakb4c7nukmd7bp6ddme5i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "997543277465-62ant4gtias5fjeuumb34dg0pthv0aho.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ru.xenous.libri"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
