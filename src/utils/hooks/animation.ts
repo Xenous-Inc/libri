@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { Animated } from 'react-native';
-import SpringAnimationConfig = Animated.SpringAnimationConfig;
-import TimingAnimationConfig = Animated.TimingAnimationConfig;
-import DecayAnimationConfig = Animated.DecayAnimationConfig;
+
+interface IAvailableInterpolatedValue {
+    toValue: 0 | 1,
+}
 
 interface IUseAnimatedValueHook<T> {
     isAnimatedToEnd: Animated.Value,
@@ -28,58 +29,52 @@ const useAnimatedValue = <T = string | number>(start: T, end: T): IUseAnimatedVa
     }
 };
 
+type ITimingAnimationConfig = Animated.TimingAnimationConfig & IAvailableInterpolatedValue;
+
 interface IUseAnimatedTimingHook<T> extends IUseAnimatedValueHook<T> {
-    animateToStart: (config: TimingAnimationConfig) => void,
-    animateToEnd: (config: TimingAnimationConfig) => void,
+    animate: (config: ITimingAnimationConfig) => void;
 }
 
-const useAnimatedTiming = <T = string | number>(start: T, end: T): IUseAnimatedTimingHook<T> => {
+export const useAnimatedTiming = <T = string | number>(start: T, end: T): IUseAnimatedTimingHook<T> => {
     const animatedValueData = useAnimatedValue<T>(start, end);
 
     return {
-        animateToStart: (config: TimingAnimationConfig) => {
-            Animated.timing(animatedValueData.isAnimatedToEnd, { ...config, toValue: 0 }).start();
+        animate: (config: ITimingAnimationConfig) => {
+            Animated.timing(animatedValueData.isAnimatedToEnd, config).start();
         },
-        animateToEnd: (config: TimingAnimationConfig) => {
-            Animated.timing(animatedValueData.isAnimatedToEnd, { ...config, toValue: 1 }).start();
-        },
-        ...animatedValueData,
+      ...animatedValueData,
     }
 };
+
+type ISpringAnimationConfig = Animated.SpringAnimationConfig & IAvailableInterpolatedValue;
 
 interface IUseAnimatedSpringHook<T> extends IUseAnimatedValueHook<T> {
-    animateToStart: (config: SpringAnimationConfig) => void,
-    animateToEnd: (config: SpringAnimationConfig) => void,
+    animate: (config: ISpringAnimationConfig) => void;
 }
 
-const useAnimatedSpring = <T = string | number>(start: T, end: T): IUseAnimatedSpringHook<T> => {
+export const useAnimatedSpring = <T = string | number>(start: T, end: T): IUseAnimatedSpringHook<T> => {
     const animatedValueData = useAnimatedValue<T>(start, end);
 
     return {
-        animateToStart: (config: SpringAnimationConfig) => {
-            Animated.spring(animatedValueData.isAnimatedToEnd, {...config, toValue: 0}).start();
-        },
-        animateToEnd: (config: SpringAnimationConfig) => {
-            Animated.spring(animatedValueData.isAnimatedToEnd, {...config, toValue: 1}).start();
+        animate: (config: ISpringAnimationConfig) => {
+            Animated.spring(animatedValueData.isAnimatedToEnd, config).start();
         },
         ...animatedValueData,
     }
 };
 
+type IDecayAnimationConfig = Animated.DecayAnimationConfig & IAvailableInterpolatedValue
+
 interface IUseAnimatedDecayHook<T> extends IUseAnimatedValueHook<T> {
-    animateToStart: (config: DecayAnimationConfig) => void,
-    animateToEnd: (config: DecayAnimationConfig) => void,
+    animate: (config: IDecayAnimationConfig) => void,
 }
 
-const useAnimatedDecay = <T = string | number>(start: T, end: T): IUseAnimatedDecayHook<T> => {
+export const useAnimatedDecay = <T = string | number>(start: T, end: T): IUseAnimatedDecayHook<T> => {
     const animatedValueData = useAnimatedValue<T>(start, end);
 
     return {
-        animateToStart: (config: DecayAnimationConfig) => {
-            Animated.spring(animatedValueData.isAnimatedToEnd, {...config, toValue: 0}).start();
-        },
-        animateToEnd: (config: DecayAnimationConfig) => {
-            Animated.spring(animatedValueData.isAnimatedToEnd, {...config, toValue: 1}).start();
+        animate: (config: IDecayAnimationConfig) => {
+            Animated.spring(animatedValueData.isAnimatedToEnd, config).start();
         },
         ...animatedValueData,
     }
